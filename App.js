@@ -43,6 +43,7 @@ const App = () => {
                 headerTitleStyle:{
                   fontWeight: 'bold',
                 },
+                headerTintColor: '#000',
                 headerTitleAlign: 'center'
               }}
             >

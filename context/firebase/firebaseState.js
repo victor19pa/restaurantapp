@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import firebase from '../../firebase';
+import { OBTENER_PRODUCTOS } from '../../types';
 import FirebaseContext from './firebaseContext';
 import FirebaseReducer from './firebaseReducer';
 
@@ -15,11 +16,18 @@ const FirebaseState = (props) => {
     //useReducer con dispatch para ejecucion
     const [ state, dispatch ] = useReducer(FirebaseReducer, initialState)
 
+    //funcion traer productos
+    const obtenerProductos = () =>{
+        //console.log('desde firebase state')
+    }
+
 
     return(
         <FirebaseContext.Provider 
             value={{
-                menu: state.menu
+                menu: state.menu,
+                firebase,
+                obtenerProductos
             }}
         >
             {props.children}
