@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import PedidoContext from './pedidosContext';
 import PedidosReducer from './pedidosReducer';
-import { SELECCIONAR_PRODUCTO } from '../../types'
+import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDENAR_PLATILLO } from '../../types'
 
 const PedidoState = (props) => {
 
@@ -22,14 +22,21 @@ const PedidoState = (props) => {
             payload: platillo
         })
     }
-
+    //CUANDO USUARIO CONFIRMA UN PEDIDO - FORMULARIO PLATILLO -> RESUMEN LUEGO PANTALLA
+    const guardarPedido = (pedido) => {
+        dispatch({
+            type: CONFIRMAR_ORDENAR_PLATILLO,
+            payload: pedido
+        })
+    }
 
     return(
         <PedidoContext.Provider 
             value={{
                 pedido: state.pedido,
                 platillo: state.platillo,
-                seleccionarPlatillo
+                seleccionarPlatillo,
+                guardarPedido
             }}
         >
             {props.children}
