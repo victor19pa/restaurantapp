@@ -14,15 +14,35 @@ const Menu = () => {
         //console.log(menu)
     },[])
 
+    const mostrarHeading = (categoria, i) => {
+        if(i>0){
+            const categoriaAnterior = menu[i-1].categoria
+            if(categoriaAnterior !== categoria){
+                return(
+                    <Separator style={styles.separador}>
+                        <Text style={styles.separadorTxt}>{categoria}</Text>
+                    </Separator>
+                )
+            }
+        }else{
+            return(
+                <Separator style={styles.separador}>
+                    <Text style={styles.separadorTxt}>{categoria}</Text>
+                </Separator>
+            )
+        }
+    };
+
     return (  
         <Container style={globalStyles.contenedor}>
             <Content style={{backgroundColor: '#FFF'}}>
                 <List>
-                    {menu.map(platillo => {
+                    {menu.map((platillo, i) => {
                         const { imagen, nombre, descripcion, categoria, precio, id } = platillo
 
                         return(
                             <Fragment key={id}>
+                                {mostrarHeading(categoria, i)}
                                 <ListItem 
 
                                 >
@@ -50,5 +70,17 @@ const Menu = () => {
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    separador:{
+        backgroundColor: '#000'
+    },
+    separadorTxt:{
+        color: '#FFDA00',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        fontSize: 14
+    }
+})
  
 export default Menu;

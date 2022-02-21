@@ -3,6 +3,7 @@ import firebase from '../../firebase';
 import { OBTENER_PRODUCTOS_EXITO } from '../../types';
 import FirebaseContext from './firebaseContext';
 import FirebaseReducer from './firebaseReducer';
+import _ from 'lodash';
 
 const FirebaseState = (props) => {
 
@@ -28,6 +29,9 @@ const FirebaseState = (props) => {
                     ...doc.data()
                 }
             });
+            //ordenar por categoria
+            // Ordenar por categoria con lodash
+            platillos = _.sortBy(platillos, 'categoria');
             //console.log(platillos)
             dispatch({
                 type: OBTENER_PRODUCTOS_EXITO,
