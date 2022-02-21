@@ -7,6 +7,10 @@ class Firebase {
     constructor() {
         if(!app.apps.length) {
             app.initializeApp(firebaseConfig)
+            app.firestore().settings({ 
+                experimentalAutoDetectLongPolling: true
+            });
+            
         }
         this.db = app.firestore()
         //this.storage = app.storage()

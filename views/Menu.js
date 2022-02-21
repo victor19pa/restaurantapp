@@ -5,11 +5,13 @@ import FirebaseContext from '../context/firebase/firebaseContext';
 const Menu = () => {
 
     //context firebase
-    const { obtenerProductos } = useContext(FirebaseContext);
+    const { menu, obtenerProductos } = useContext(FirebaseContext);
 
     useEffect(() =>{
         obtenerProductos();
+        console.log(menu)
     },[])
+
     return (  
         <Text>Menu</Text>
     );
