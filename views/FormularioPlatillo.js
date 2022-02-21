@@ -13,16 +13,35 @@ const FormularioPlatillo = () => {
                     <Text style={globalStyles.titulo}>Cantidad</Text>
                     <Grid>
                         <Col>
-                            <Button>
-                                <Icon name='remove'></Icon>
+                            <Button
+                                props
+                                dark
+                                style={styles.botonIcon}
+                            >
+                                <Icon 
+                                    name='remove'
+                                    style={{ fontSize: 40}}
+                                >
+                                </Icon>
                             </Button>
                         </Col>
                         <Col>
-                            <Text>2</Text>
+                            <Input 
+                                value='1'
+                                style={{textAlign: 'center', fontSize: 20}}
+                            />
                         </Col>
                         <Col>
-                            <Button>
-                                <Icon name='remove'></Icon>
+                            <Button
+                                props
+                                dark
+                                style={styles.botonIcon}
+                            >
+                                <Icon 
+                                    style={{ fontSize: 40}}
+                                    name='add'
+                                >
+                                </Icon>
                             </Button>
                         </Col>
                         
@@ -32,5 +51,14 @@ const FormularioPlatillo = () => {
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    botonIcon:{
+        height: 80, 
+        justifyContent: 'center',
+        width: '100%',
+        borderRadius: 8
+    }
+})
  
 export default FormularioPlatillo;
