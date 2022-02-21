@@ -24,10 +24,22 @@ const DetallePlatillo = () => {
                     <CardItem>
                         <Body>
                             <Image style={globalStyles.imagen} source={{uri: imagen}}/>
+                            <Text style={{marginTop: 20}}>{descripcion}</Text>
+                            <Text style={globalStyles.cantidad}>Precio: L{precio}</Text>
                         </Body>
                     </CardItem>
                 </Card>
             </Content>
+            <Footer>
+                <FooterTab>
+                    <Button 
+                        style={globalStyles.boton}
+                        onPress={ () => navigation.navigate('FormularioPlatillo')}    
+                    >
+                        <Text style={globalStyles.botonTxt}> Ordenar Platillo</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
         </Container>
     );
 }

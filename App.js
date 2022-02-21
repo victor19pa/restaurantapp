@@ -69,7 +69,7 @@ const App = () => {
                 }}
               />
               <Stack.Screen 
-                name='Formulario Platillo'
+                name='FormularioPlatillo'
                 component={FormularioPlatillo}
                 options={{
                   title:'Formulario Platillo',
