@@ -16,18 +16,19 @@ const PedidoState = (props) => {
 
     //seleccionar platillo qeu usuario desee
     const seleccionarPlatillo = (platillo) => {
-        console.log(platillo)
+        //console.log(platillo)
         dispatch({
             type: SELECCIONAR_PRODUCTO,
-            payload: platillo //es lo que cambia el states
+            payload: platillo
         })
-    };
+    }
 
 
     return(
         <PedidoContext.Provider 
             value={{
                 pedido: state.pedido,
+                platillo: state.platillo,
                 seleccionarPlatillo
             }}
         >
