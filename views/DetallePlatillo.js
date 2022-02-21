@@ -19,7 +19,6 @@ const DetallePlatillo = () => {
         <Container style={globalStyles.contenedor}>
             <Content style={globalStyles.contenido}>
                 <H1 style={globalStyles.titulo}>{nombre}</H1>
-
                 <Card>
                     <CardItem>
                         <Body>
