@@ -8,9 +8,9 @@ class Firebase {
         if(!app.apps.length) {
             app.initializeApp(firebaseConfig)
             app.firestore().settings({ 
-                experimentalAutoDetectLongPolling: true
-            });
-            
+                experimentalAutoDetectLongPolling: true,
+                merge: true
+            });            
         }
         this.db = app.firestore()
         //this.storage = app.storage()
