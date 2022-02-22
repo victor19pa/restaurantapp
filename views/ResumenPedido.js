@@ -4,6 +4,7 @@ import { Container, Content, List, ListItem, Thumbnail, Left, Body, Button, Text
 import { useNavigation } from '@react-navigation/native'
 import globalStyles from '../styles/global';
 import PedidoContext from '../context/pedidos/pedidosContext';
+import firebase from '../firebase'
 
 const ResumenPedido = () => {
 
@@ -29,7 +30,23 @@ const ResumenPedido = () => {
             [
                 {
                     text: 'Confirmar',
-                    onPress: () => {
+                    onPress: async () => {
+                        //crear obj
+                        const pedidoObj = {
+                            tiempoentrega: 0,
+                            completado: false,
+                            total: Number(total),
+                            orden: pedido, //array
+                            creado: Date.now()
+                        }
+                        //console.log(pedidoObj)
+                        //escribir en firebase
+                        try {
+                            const pedido = await firebase.db.collection('ordenes').add(pedidoObj)
+                            console.log(pedido.id)
+                        } catch (error) {
+                            console.log(error)
+                        }
                         navigation.navigate('ProgresoPedido')
                     }
                 },
