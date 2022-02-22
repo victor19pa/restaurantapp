@@ -11,7 +11,7 @@ const ResumenPedido = () => {
     const navigation = useNavigation();
 
     // context de pedido
-    const { pedido, total, mostrarResumen, eliminarProducto } = useContext(PedidoContext);
+    const { pedido, total, mostrarResumen, eliminarProducto, pedidoRealizado } = useContext(PedidoContext);
     //console.log(pedido)
     useEffect(() => {
         calcularTotal();
@@ -43,11 +43,13 @@ const ResumenPedido = () => {
                         //escribir en firebase
                         try {
                             const pedido = await firebase.db.collection('ordenes').add(pedidoObj)
-                            console.log(pedido.id)
+                            //va tomar el id almacenado y colocarla en el state para tenerla en la siguiente pantalla Progreso Pedido
+                            pedidoRealizado(pedido.id)
+                            //redireccionar
+                            navigation.navigate('ProgresoPedido')
                         } catch (error) {
                             console.log(error)
                         }
-                        navigation.navigate('ProgresoPedido')
                     }
                 },
                 {

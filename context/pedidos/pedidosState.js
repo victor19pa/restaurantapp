@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import PedidoContext from './pedidosContext';
 import PedidosReducer from './pedidosReducer';
-import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDENAR_PLATILLO, MOSTRAR_RESUMEN, ELIMINAR_PRODUCTO } from '../../types'
+import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDENAR_PLATILLO, MOSTRAR_RESUMEN, ELIMINAR_PRODUCTO, PEDIDO_ORDENADO} from '../../types'
 
 const PedidoState = (props) => {
 
@@ -10,6 +10,7 @@ const PedidoState = (props) => {
         pedido: [],
         platillo: null,
         total: 0,
+        idpedido: '',
     }
 
     //useReducer con dispatch para ejecucion
@@ -44,6 +45,13 @@ const PedidoState = (props) => {
             payload: id
         })
     }
+    //
+    const pedidoRealizado = (id) => {
+        dispatch({
+            type: PEDIDO_ORDENADO,
+            payload: id
+        })
+    }
 
 
     return(
@@ -52,10 +60,12 @@ const PedidoState = (props) => {
                 pedido: state.pedido,
                 platillo: state.platillo,
                 total: state.total,
+                idpedido: state.idpedido,
                 seleccionarPlatillo,
                 guardarPedido,
                 mostrarResumen,
-                eliminarProducto
+                eliminarProducto,
+                pedidoRealizado
             }}
         >
             {props.children}
