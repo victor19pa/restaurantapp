@@ -45,9 +45,40 @@ const ResumenPedido = () => {
                     )
                 })}
                 <Text style={globalStyles.cantidad}>Total a pagar: L{total}</Text>
+
+                <Button 
+                    onPress={() => navigation.navigate('Menu')}
+                    style={ styles.botonPidiendo }
+                    full
+                    dark
+                >
+                    <Text style={styles.botonPidiendoTxt}>Seguir pidiendo</Text>
+                </Button>
             </Content>
+            <Footer>
+                    <FooterTab>
+                        <Button 
+                            onPress={() => navigation.navigate('ProgresoPedido')}
+                            style={globalStyles.boton}
+                            full
+                        >
+                            <Text style={[globalStyles.botonTxt, {fontSize: 16}]}>Pagar</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    botonPidiendo:{
+        marginTop: 30
+    },
+    botonPidiendoTxt:{
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 14
+    }
+})
  
 export default ResumenPedido;

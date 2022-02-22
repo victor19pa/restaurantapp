@@ -22,6 +22,7 @@ import FirebaseState from './context/firebase/firebaseState';
 import PedidoState from './context/pedidos/pedidosState';
 //localhost:8081
 import { LogBox } from 'react-native';
+import BotonResumen from './components/Ui/BotonResumen';
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
 ]);
@@ -59,6 +60,7 @@ const App = () => {
                 component={Menu}
                 options={{
                   title:'Nuestro Menu',
+                  headerRight: props => <BotonResumen />
                 }}
               />
               <Stack.Screen 
