@@ -5,14 +5,12 @@ import { StyleSheet, View } from 'react-native';
 import PedidoContext from '../context/pedidos/pedidosContext';
 import globalStyles from '../styles/global';
 
-
-
 const ProgresoPedido = () => {
-    
-    const { } = useContext(PedidoContext);
+    //con este id podedmos consultar la base de firebase
+    const { idpedido } = useContext(PedidoContext);
 
     return (  
-        <Text>Desde Progreso</Text>
+        <Text>{idpedido}</Text>
     );
 }
  
