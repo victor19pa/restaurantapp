@@ -10,17 +10,56 @@ const ResumenPedido = () => {
     const navigation = useNavigation();
 
     // context de pedido
-    const { pedido, total, mostrarResumen } = useContext(PedidoContext);
+    const { pedido, total, mostrarResumen, eliminarProducto } = useContext(PedidoContext);
     //console.log(pedido)
-    
     useEffect(() => {
         calcularTotal();
     }, [pedido]);
-
+    //calcula el total para mostrar en resumen
     const calcularTotal = () => {
         let nuevoTotal = 0;
         nuevoTotal = pedido.reduce( (nuevoTotal, articulo) => nuevoTotal + articulo.total, 0);
         mostrarResumen(nuevoTotal)
+    }
+    //boton de pagar confimarcion
+    const progresoPedido = () => {
+        Alert.alert(
+            '¿Desea confimar su pedido?',
+            'Un pedido confirmado no se puede editar',
+            [
+                {
+                    text: 'Confirmar',
+                    onPress: () => {
+                        navigation.navigate('ProgresoPedido')
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    style: 'cancel'
+                }
+            ]
+        )
+    }
+    //elimina alguna orden del pedido
+    const confirmarEliminar = (id) => {
+        Alert.alert(
+            '¿Desea eliminar este articulo?',
+            'Un vez eliminado, tendra que volver a pedirlo en menu ',
+            [
+                {
+                    text: 'Confirmar',
+                    onPress: () => {
+                        //eliminar producto del state
+                        eliminarProducto(id)
+                        //cancelar el precio lo hace en el useEffect
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    style: 'cancel'
+                }
+            ]
+        )
     }
 
     return (  
@@ -39,6 +78,16 @@ const ResumenPedido = () => {
                                     <Text>{nombre}</Text>
                                     <Text>Cantidad: {cantidad}</Text>
                                     <Text>Precio c/u: L{precio}</Text>
+                                    <Button 
+                                        onPress={() => confirmarEliminar(id)}
+                                        full
+                                        danger
+                                        style={{marginTop: 20}}
+                                    >
+                                        <Text style={[globalStyles.botonTxt, {color: '#FFF'}]}>
+                                            Eliminar
+                                        </Text>
+                                    </Button>
                                 </Body>
                             </ListItem>
                         </List>
@@ -54,11 +103,12 @@ const ResumenPedido = () => {
                 >
                     <Text style={styles.botonPidiendoTxt}>Seguir pidiendo</Text>
                 </Button>
+
             </Content>
             <Footer>
                     <FooterTab>
                         <Button 
-                            onPress={() => navigation.navigate('ProgresoPedido')}
+                            onPress={() => progresoPedido()}
                             style={globalStyles.boton}
                             full
                         >

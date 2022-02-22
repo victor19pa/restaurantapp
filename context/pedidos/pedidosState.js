@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import PedidoContext from './pedidosContext';
 import PedidosReducer from './pedidosReducer';
-import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDENAR_PLATILLO, MOSTRAR_RESUMEN } from '../../types'
+import { SELECCIONAR_PRODUCTO, CONFIRMAR_ORDENAR_PLATILLO, MOSTRAR_RESUMEN, ELIMINAR_PRODUCTO } from '../../types'
 
 const PedidoState = (props) => {
 
@@ -37,6 +37,13 @@ const PedidoState = (props) => {
             payload: total
         })
     }
+    //ELIMINA UN ARTICULO DEL PEDIDO PANTALLA RESUMEN PEDIDO
+    const eliminarProducto = (id) => {
+        dispatch({
+            type: ELIMINAR_PRODUCTO,
+            payload: id
+        })
+    }
 
 
     return(
@@ -47,7 +54,8 @@ const PedidoState = (props) => {
                 total: state.total,
                 seleccionarPlatillo,
                 guardarPedido,
-                mostrarResumen
+                mostrarResumen,
+                eliminarProducto
             }}
         >
             {props.children}
